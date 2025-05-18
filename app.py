@@ -1,5 +1,4 @@
 from dash import Dash, dcc, html, Input, Output
-from jupyter_dash import JupyterDash
 import numpy as np 
 import pandas as pd
 
