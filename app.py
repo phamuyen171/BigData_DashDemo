@@ -37,5 +37,3 @@ def update_bar_chart(dims):
         height=1000)
     return fig
 
-
-app.run(jupyter_mode="external")
