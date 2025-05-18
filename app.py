@@ -12,6 +12,7 @@ data["exam_quality"] = data["exam_score"].apply(lambda x:
                                             else "Fail")
 
 app = Dash(__name__)
+server = app.server
 
 app.layout = html.Div([
     html.H1('Demo Dash framework cho dataset phân tích thói quen học tập'),
