@@ -2,15 +2,6 @@ from dash import Dash, dcc, html, Input, Output
 import numpy as np 
 import pandas as pd
 
-data = pd.read_csv('student_habits_performance.csv')
-data["exam_quality"] = data["exam_score"].apply(lambda x: 
-                                            "Outstanding" if x >= 90
-                                            else "Excellent" if x >= 80 
-                                            else "Good" if x >= 70 
-                                            else "Average" if x >= 60
-                                            else "Pass" if x >= 50 
-                                            else "Fail")
-
 app = Dash(__name__)
 server = app.server
 
@@ -31,9 +22,17 @@ app.layout = html.Div([
     Output("graph", "figure"),
     Input("dropdown", "value"))
 def update_bar_chart(dims):
-    df = data # replace with your own data source
+    data = pd.read_csv('student_habits_performance.csv')
+    data["exam_quality"] = data["exam_score"].apply(lambda x: 
+                                                "Outstanding" if x >= 90
+                                                else "Excellent" if x >= 80 
+                                                else "Good" if x >= 70 
+                                                else "Average" if x >= 60
+                                                else "Pass" if x >= 50 
+                                                else "Fail")
+
     fig = px.scatter_matrix(
-        df, dimensions=dims, color="exam_quality",
+        data, dimensions=dims, color="exam_quality",
         height=1000)
     return fig
 
